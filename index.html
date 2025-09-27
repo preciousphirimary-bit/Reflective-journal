@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reflective Journal – Emotional Intelligence Course</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f8ff;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 { color: #004d66; }
+    .journal-entry {
+      border: 2px solid #0077cc;
+      border-radius: 12px;
+      background: #ffffff;
+      padding: 15px;
+      margin: 20px auto;
+      max-width: 600px;
+      text-align: left;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      border: 2px solid #0077cc;
+      border-radius: 8px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      border: none;
+      background: #0077cc;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover { background: #005580; }
+    .entry-date { font-size: 0.9em; color: #555; margin-top: 5px; }
+    .entry-output { margin-top: 10px; padding: 10px; border: 1px dashed #0077cc; border-radius: 8px; background: #e6f7ff; }
+    img { max-width: 150px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+  <h1>📝 Reflective Journal</h1>
+  <p>Track your learning and progress in the Emotional Intelligence course.</p>
+  <img src="https://img.icons8.com/color/200/journal.png" alt="Journal">
+
+  <div class="journal-entry">
+    <label for="date">Date:</label>
+    <input type="date" id="date">
+
+    <label for="reflection">Reflection Prompt: How are you feeling today?</label>
+    <textarea id="reflection" rows="3" placeholder="Write your thoughts..."></textarea>
+
+    <label for="application">Application: How can you apply what you learned today?</label>
+    <textarea id="application" rows="3" placeholder="Write your action plan..."></textarea>
+
+    <button onclick="saveEntry()">Save Entry</button>
+
+    <div id="entries" class="entry-output"></div>
+  </div>
+
+  <script>
+    function saveEntry() {
+      const date = document.getElementById('date').value;
+      const reflection = document.getElementById('reflection').value.trim();
+      const application = document.getElementById('application').value.trim();
+
+      if (!date || !reflection || !application) {
+        alert("Please fill in all fields before saving!");
+        return;
+      }
+
+      const entriesDiv = document.getElementById('entries');
+      const entryHTML = `
+        <div class="journal-entry">
+          <div class="entry-date"><strong>Date:</strong> ${date}</div>
+          <div><strong>Reflection:</strong> ${reflection}</div>
+          <div><strong>Application:</strong> ${application}</div>
+        </div>
+      `;
+      entriesDiv.innerHTML = entryHTML + entriesDiv.innerHTML;
+
+      // Clear inputs
+      document.getElementById('reflection').value = '';
+      document.getElementById('application').value = '';
+      document.getElementById('date').value = '';
+    }
+  </script>
+
+</body>
+</html>
